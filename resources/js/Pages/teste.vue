@@ -1,8 +1,12 @@
-<template >
+<template>
+    <layoutBase/>
     <div>
-        <p class="text-red-500">weight</p>
+        oi
     </div>
 </template>
+<script setup>
+
+import layoutBase from './components/layout/layout_base.vue';
 
 
-
+</script>

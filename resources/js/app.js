@@ -1,5 +1,6 @@
 import './bootstrap';
 import '../css/main.css';
+import 'remixicon/fonts/remixicon.css'
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 
