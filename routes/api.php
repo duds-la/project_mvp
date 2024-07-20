@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/teste', function () {
+Route::get('/', function () {
     return 12;
 });
 
