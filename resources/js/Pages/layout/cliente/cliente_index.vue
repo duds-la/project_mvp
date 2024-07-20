@@ -3,9 +3,8 @@
         <div>
             <!-- GRÁFICOS -->
             <div class="flex flex-row w-full justify-between items-center px-14">
-                <div class="bg-white p-20">Grafico 1</div>
-                <div class="bg-white p-20">Grafico 2</div>
-                <div class="bg-white p-20">Grafico 3</div>
+                
+                <div class="bg-white w-full"><graficos_cliente /></div>
 
             </div>
 
@@ -78,6 +77,6 @@
 <script setup>
 
 import layoutBase from '../../components/layout/layout_base.vue';
-
+import graficos_cliente from './components/graficos_cliente.vue';
 
 </script>

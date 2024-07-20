@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClienteGraficoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,3 +9,6 @@ Route::get('/', function () {
 
 
 
+Route::controller(ClienteGraficoController::class, 'grafico-cliente')->group(function () {
+    Route::get('/grafico-cadastro', 'graficosCadastro')->name('grafico-cadastro');
+});
