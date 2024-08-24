@@ -2,25 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Services\Cliente\ClienteService;
+use App\Http\Services\Pesquisa\Cliente\PesquisaClienteService;
 use App\Models\Cliente;
 use Exception;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class ClienteController extends Controller
+class PesquisaClienteController extends Controller
 {
-    protected $clienteService;
+    protected $pesquisaClienteService;
 
-    public function __construct(ClienteService $clienteService)
+    public function __construct(PesquisaClienteService $pesquisaClienteService)
     {
-        $this->clienteService = $clienteService;
+        $this->pesquisaClienteService = $pesquisaClienteService;
     }
     
-    public function index()
+    public function pesquisaClienteMultiplosCampos(Request $request)
     {
+    
         try {
-            $clientes = Cliente::paginate(10);
+            $post = $request->input('parametro');
+
+            $clientes = $this->pesquisaClienteService->pesquisaMultiplosCampos($post);
+
             $paginacao = [];
             $paginacao = [
                 'totalPaginas' => $clientes->lastPage(),
@@ -37,35 +41,7 @@ class ClienteController extends Controller
         } catch (Exception $e) {
             return 123;
         }
+
     }
 
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(string $id)
-    {
-        //
-    }
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
-    }
 }

@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome',250);
             $table->string('sobrenome',250)->nullable();
-            $table->string('cpf',100)->nullable();
-            $table->string('cpnj',250)->nullable();
+            $table->string('documento',100)->nullable();
             $table->unsignedBigInteger('tipo_id');
             $table->string('numero',30)->nullable();
             $table->date('data_nascimento')->nullable();

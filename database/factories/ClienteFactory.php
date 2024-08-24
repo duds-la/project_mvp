@@ -24,8 +24,7 @@ class ClienteFactory extends Factory
          return [
              'nome' => $this->faker->firstName,
              'sobrenome' => $isPessoaFisica ? $this->faker->lastName : null,
-             'cpf' => $isPessoaFisica ? $this->faker->numerify('###########') : null,
-             'cpnj' => !$isPessoaFisica ? $this->faker->numerify('##############') : null,
+             'documento' => $isPessoaFisica ? $this->faker->numerify('###########') : null,
              'tipo_id' => $tipoPessoa->id,
              'numero' => $this->faker->numerify('####'),
              'data_nascimento' => $this->faker->date('Y-m-d', '2005-01-01'),

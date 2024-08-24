@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap -mx-4">
+  <div class="flex flex-wrap -mx-2">
     <!-- Gráfico de Clientes Ativos -->
     <div class="w-full md:w-1/3 px-4 mb-4">
       <div class="bg-white shadow-md rounded-lg p-4">

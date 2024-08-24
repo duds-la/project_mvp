@@ -2,81 +2,52 @@
     <layoutBase>
         <div>
             <!-- GRÁFICOS -->
-            <div class="flex flex-row w-full justify-between items-center px-14">
+            <div class="flex flex-row w-full justify-between items-center px-">
                 
-                <div class="bg-white w-full"><graficos_cliente /></div>
+                <div class="bg-gray-200 w-full"><graficos_cliente /></div>
 
             </div>
 
             <!-- BOTÕES DE AÇÕES -->
             <div class="flex flex-row w-full justify-between items-center space-x-4 mt-2">
-                <div class="bg-green-400 p-10">Cadastrar cliente</div>
-                <div class="bg-green-400 p-10 flex-grow">PESQUISA</div>
+                <div class="p-10"><botao_cadastrar/></div>
+                <div class="flex-grow"><botao_pesquisar :rota="rotaPesquisaCliente.rota"/></div>
+            </div>
+
+            <!-- PAGINACAO -->
+            <div class="">
+                <paginacao_componente :paginacao="paginacao"/>
             </div>
 
             <!-- TABELA -->
-            <div class="w-full mt-2">
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">
-                                    Cliente
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    CPF/CNPJ
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    NUMERO
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    EMAIL
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Action
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr
-                                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Eduardo A.
-                                </th>
-                                <td class="px-6 py-4">
-                                    123.4567.89-10
-                                </td>
-                                <td class="px-6 py-4">
-                                    +5551995437643
-                                </td>
-                                <td class="px-6 py-4">
-                                    edu@email.com
-                                </td>
-                                <td class="px-6 py-4">
-                                    <a href="#"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-
+            <div>
+                <tabela_index_cliente :clientes="clientes"/>
             </div>
 
-            <div class="flex flex-row w-full justify-center items-center space-x-4 mt-2">
-                <div class="bg-gray-500 p-4">Paginacao</div>
-                
-            </div>
+            
+
+            
 
         </div>
     </layoutBase>
 
 </template>
 <script setup>
+import { router } from '@inertiajs/vue3';
 
 import layoutBase from '../../components/layout/layout_base.vue';
+import paginacao_componente from '../../components/paginacao/paginacao_componente.vue';
 import graficos_cliente from './components/graficos_cliente.vue';
+import tabela_index_cliente from './components/tabela_index_cliente.vue';
+import botao_cadastrar from '../../components/buttons/botao_cadastrar.vue';
+import botao_pesquisar from '../../components/buttons/botao_pesquisar.vue';
+import { rotaPesquisaCliente } from '../../../constants/links/index_rotas_pesquisa.js';
 
+const { clientes, paginacao } = defineProps(['clientes', 'paginacao']);
+
+function changePage(url) {
+    if (url) {
+    router.get(`/admin/clientes/${url}/edit`);
+    }
+}
 </script>

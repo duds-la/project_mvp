@@ -2,8 +2,8 @@
 
     <side_bar />
     
-    <div class="w-full h-screen  pt-10 px-4 sm:px-6 md:px-8 lg:ps-72 bg-blue-400">
-        <div class="bg-red-400 rounded-lg">
+    <div class="w-full min-h-screen  pt-10 px-4 sm:px-6 md:px-8 lg:ps-72 bg-gray-50">
+        <div class="bg-gray-200 rounded-lg p-4">
             <slot></slot>
         </div>
     </div>
