@@ -7,7 +7,7 @@
                     <i class="ri-search-line text-lg text-gray-900 "></i>
                     
                 </div>
-                <input type="text" id="parametro" v-model="form.parametro" name="parametro" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-200 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " placeholder="Pesquise Algo..."  />
+                <input type="text" id="parametro" v-model="form.parametro" name="parametro" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-200 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 " placeholder="Pesquise Algo..." />
 
                 <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
                     Pesquisar<i class="ri-search-line ml-2"></i>
@@ -22,7 +22,6 @@ import { useForm } from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3';
 
 const { rota } = defineProps(['rota']);
-console.log(rota);
 const form = useForm({
     parametro: null,
 })
