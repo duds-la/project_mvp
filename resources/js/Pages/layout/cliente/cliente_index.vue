@@ -10,7 +10,7 @@
 
             <!-- BOTÕES DE AÇÕES -->
             <div class="flex flex-row w-full justify-between items-center space-x-4 mt-2">
-                <div class="p-10"><botao_cadastrar/></div>
+                <div class="p-10"><botao_cadastrar :rota="rotaCadastroCliente.rota"/></div>
                 <div class="flex-grow"><botao_pesquisar :rota="rotaPesquisaCliente.rota"/></div>
             </div>
 
@@ -42,6 +42,7 @@ import tabela_index_cliente from './components/tabela_index_cliente.vue';
 import botao_cadastrar from '../../components/buttons/botao_cadastrar.vue';
 import botao_pesquisar from '../../components/buttons/botao_pesquisar.vue';
 import { rotaPesquisaCliente } from '../../../constants/links/index_rotas_pesquisa.js';
+import { rotaCadastroCliente } from '../../../constants/links/index_rotas_cadastro.js';
 
 const { clientes, paginacao } = defineProps(['clientes', 'paginacao']);
 

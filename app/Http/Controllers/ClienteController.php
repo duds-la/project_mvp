@@ -16,7 +16,7 @@ class ClienteController extends Controller
     {
         $this->clienteService = $clienteService;
     }
-    
+
     public function index()
     {
         try {
@@ -28,12 +28,11 @@ class ClienteController extends Controller
                 'nextPageUrl' => $clientes->nextPageUrl(),
                 'prevPageUrl' => $clientes->previousPageUrl()
             ];
-    
+
             return Inertia::render('layout/cliente/cliente_index', [
                 'clientes' => $clientes->items(),
                 'paginacao' => $paginacao
             ]);
-    
         } catch (Exception $e) {
             return 123;
         }
@@ -41,7 +40,7 @@ class ClienteController extends Controller
 
     public function create()
     {
-        //
+        return Inertia::render('layout/cliente/cliente_cadastro');
     }
 
     public function store(Request $request)

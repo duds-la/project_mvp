@@ -13,6 +13,7 @@ Route::get('/', function () {
 Route::prefix('/cliente')->group(function () {
     Route::controller(ClienteController::class)->group(function () {
         Route::get('/', 'index')->name('cliente.index');
+        Route::get('/cadastrar-cliente', 'create')->name('cliente.create');
     });
 });
 
