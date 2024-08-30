@@ -2,7 +2,7 @@
     <div>
         <a @click="voltar" class="bg-blue-700 p-3 rounded-xl text-lg text-white font-normal 
         tracking-wide hover:bg-blue-800 transition-colors hover:cursor-pointer">
-            Voltar <i class="ri-add-circle-line text-lg"></i>
+            <i class="ri-arrow-left-double-line"></i>
         </a>
     </div>
 </template>
