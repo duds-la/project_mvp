@@ -14,7 +14,7 @@ import side_bar_open from '../sideBar/side_bar_open.vue';
 import side_bar_close from '../sideBar/side_bar_close.vue';
 
 // Define the emit function
-const emit = defineEmits(['menu-fechado']);
+const emit = defineEmits(['menu-fechado', 'menu-aberto']);
 
 const menuAberto = ref(true);
 
@@ -23,6 +23,8 @@ const toggleMenu = () => {
   console.log('Menu toggled, menuAberto:', menuAberto.value);
   if (!menuAberto.value) {
     emit('menu-fechado');
+  } else {
+    emit('menu-aberto');
   }
 };
 </script>
