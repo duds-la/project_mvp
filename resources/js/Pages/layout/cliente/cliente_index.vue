@@ -1,6 +1,11 @@
 <template>
+    
     <layoutBase>
+        
         <div>
+            <div class="p-4 mb-4">
+                <breadCrumb :items="breadCrumbCliente" />
+            </div>
             <!-- GRÁFICOS -->
             <div class="flex flex-row w-full justify-between items-center px-">
                 
@@ -41,8 +46,10 @@ import graficos_cliente from './components/graficos_cliente.vue';
 import tabela_index_cliente from './components/tabela_index_cliente.vue';
 import botao_cadastrar from '../../components/buttons/botao_cadastrar.vue';
 import botao_pesquisar from '../../components/buttons/botao_pesquisar.vue';
+import breadCrumb from '../../components/bradCrumb/breadCrumb.vue';
 import { rotaPesquisaCliente } from '../../../constants/links/index_rotas_pesquisa.js';
 import { rotaCadastroCliente } from '../../../constants/links/index_rotas_cadastro.js';
+import { breadCrumbCliente } from '../../../constants/links/index_bread_crumb.js';
 
 const { clientes, paginacao } = defineProps(['clientes', 'paginacao']);
 
