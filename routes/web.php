@@ -20,6 +20,7 @@ Route::prefix('/cliente')->group(function () {
 Route::prefix('/pesquisa-cliente')->group(function () {
     Route::controller(PesquisaClienteController::class, 'pesquisa-cliente')->group(function () {
         Route::get('/', 'pesquisaClienteMultiplosCampos')->name('pesquisa-cliente.pesquisa-cliente');
+        Route::get('/pesquisa-cliente-cnpj', 'pesquisaClientePorCnpj')->name('pesquisa-cliente.pesquisa-cliente-cnpj');
     });
 });
 

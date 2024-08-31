@@ -14,5 +14,6 @@ Route::controller(ClienteController::class, 'cliente')->group(function () {
 
 Route::controller(PesquisaClienteController::class, 'pesquisa-cliente')->group(function () {
     Route::get('/pesquisa-cliente', 'pesquisaClienteMultiplosCampos')->name('pesquisa-cliente.pesquisa-cliente');
+    Route::get('/pesquisa-cliente-cnpj', 'pesquisaClientePorCnpj')->name('pesquisa-cliente.pesquisa-cliente-cnpj');
 });
 

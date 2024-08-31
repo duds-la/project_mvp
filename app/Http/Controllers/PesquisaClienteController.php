@@ -6,6 +6,7 @@ use App\Http\Services\Pesquisa\Cliente\PesquisaClienteService;
 use App\Models\Cliente;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 
 class PesquisaClienteController extends Controller
@@ -38,6 +39,22 @@ class PesquisaClienteController extends Controller
                 'paginacao' => $paginacao
             ]);
     
+        } catch (Exception $e) {
+            return 123;
+        }
+
+    }
+    public function pesquisaClientePorCnpj(Request $request)
+    {
+    
+        try {
+
+            $post = $request->input('documento');
+
+            $cliente = $this->pesquisaClienteService->pesquisaCnpj($post);
+
+            return response()->json($cliente);
+
         } catch (Exception $e) {
             return 123;
         }
