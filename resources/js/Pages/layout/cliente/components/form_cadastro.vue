@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form class="w-full p-4">
+        <form @submit.prevent="submit">
             <div class="flex flex-wrap -mx-3 mb-6">
 
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -9,9 +9,9 @@
                         {{ isChecked ? 'Nome' : 'Nome Fantasia' }}
                     </label>
                     <input
-                        class="appearance-none block w-full bg-gray-50 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                        class="appearance-none block w-full bg-gray-50 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                         v-model="form.nome" id="grid-first-name" type="text" placeholder="Jane">
-                    <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+                        <p v-if="errors.nome" class="text-red-500 text-xs italic">{{ errors.nome }}</p>
                 </div>
 
                 <div class="w-full md:w-1/2 px-3">
@@ -43,14 +43,24 @@
                         {{ isChecked ? 'CPF' : 'CNPJ' }}
                     </label>
                     <div class="relative">
-
+                        <!-- Input -->
                         <input type="text" id="parametro" name="parametro" v-model="form.documento"
-                            class="block w-full p-4 text-sm text-gray-900 border rounded-lg focus:ring-blue-500 focus:border-blue-500 "
+                            class="block w-full p-4 pr-16 text-sm text-gray-900 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
                             placeholder="Pesquise Algo..." />
 
+                        <!-- Botão de pesquisa -->
                         <button v-if="!isChecked" @click="consultaCNPJ" type="button"
-                            class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
-                            <i class="ri-search-line"></i>
+                            class="absolute right-2 bottom-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 flex items-center justify-center">
+                            <!-- Ícone ou spinner -->
+                            <i v-if="!loading" class="ri-search-line"></i>
+                            <svg v-if="loading" class="animate-spin h-5 w-5 text-white"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V2a10 10 0 00-10 10h2zm0 0a8 8 0 018 8h2a10 10 0 00-10-10v2z">
+                                </path>
+                            </svg>
                         </button>
                     </div>
                 </div>
@@ -97,9 +107,9 @@
                         Email
                     </label>
                     <input
-                        class="appearance-none block w-full bg-gray-50 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                        class="appearance-none block w-full bg-gray-50 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                         v-model="form.email" id="grid-first-name" type="text" placeholder="Jane">
-                    <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+                    <!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> -->
                 </div>
 
 
@@ -117,35 +127,42 @@ import { ref } from 'vue'
 import axios from 'axios';
 
 const isChecked = ref(false)
+const loading = ref(false)
 
 const handleCheckboxChange = () => {
     isChecked.value = !isChecked.value
 }
 
 const form = useForm({
-    nome: null,
-    sobrenome: null,
-    documento: null,
-    tipo: null,
-    numero: null,
-    data_nascimento: null,
-    email: null,
+    nome: null
+    // sobrenome: null,
+    // documento: null,
+    // tipo: null,
+    // numero: null,
+    // data_nascimento: null,
+    // email: null,
 })
 
-const { cliente } = defineProps(['cliente']);
-console.log(cliente)
+const { cliente, errors } = defineProps(['cliente', 'errors']);
+console.log(errors)
+
 
 function submit() {
-    router.post('/cliente/store', form)
+    router.post('/cliente/', form)
 }
 
 async function consultaCNPJ() {
-
-    const response = await axios.get('/pesquisa-cliente/pesquisa-cliente-cnpj', { params: form });
-    const data = response.data;
-    form.nome = data.nome_fantasia || '123';
-    
-    console.log(response.data);
+    loading.value = true;
+    try {
+        const response = await axios.get('/pesquisa-cliente/pesquisa-cliente-cnpj', { params: form });
+        const data = response.data;
+        form.nome = data.nome_fantasia || '123';
+        console.log(response.data);
+    } catch (error) {
+        console.error(error);
+    } finally {
+        loading.value = false; // Define loading como false após a requisição terminar
+    }
 
 }
 </script>

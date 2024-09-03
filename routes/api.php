@@ -10,6 +10,7 @@ Route::get('/', function () {
 
 Route::controller(ClienteController::class, 'cliente')->group(function () {
     Route::get('/cliente', 'index')->name('cliente.index');
+    Route::post('/cliente/store', 'store')->name('cliente.store');
 });
 
 Route::controller(PesquisaClienteController::class, 'pesquisa-cliente')->group(function () {

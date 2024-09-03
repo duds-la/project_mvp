@@ -13,8 +13,7 @@ class Cliente extends Model
     protected $fillable = [
         'nome',
         'sobrenome',
-        'cpf',
-        'cpnj',
+        'documento',
         'tipo_id',
         'numero',
         'data_nascimento',

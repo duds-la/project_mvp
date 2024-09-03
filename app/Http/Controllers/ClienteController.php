@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClienteStoreRequest;
 use App\Http\Services\Cliente\ClienteService;
 use App\Models\Cliente;
 use Exception;
@@ -43,9 +44,22 @@ class ClienteController extends Controller
         return Inertia::render('layout/cliente/cliente_cadastro');
     }
 
-    public function store(Request $request)
+    public function store(ClienteStoreRequest $request)
     {
-        //
+        
+        $validatedData = $request->validate([
+            'nome' => 'required',
+            
+        ]);
+    
+        dd($validatedData); 
+
+        $post = $request->input();
+        dd($post);
+        $novo_cliente = $this->clienteService->store($post);
+        dd($novo_cliente);
+
+        
     }
 
     public function show(string $id)
