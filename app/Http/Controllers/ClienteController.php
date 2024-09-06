@@ -46,18 +46,10 @@ class ClienteController extends Controller
 
     public function store(ClienteStoreRequest $request)
     {
-        
-        $validatedData = $request->validate([
-            'nome' => 'required',
-            
-        ]);
-    
-        dd($validatedData); 
-
         $post = $request->input();
-        dd($post);
         $novo_cliente = $this->clienteService->store($post);
-        dd($novo_cliente);
+
+        
 
         
     }

@@ -23,7 +23,8 @@ class ClienteStoreRequest extends FormRequest
     {
         
         return [
-            'nome' =>'required'
+            'nome' =>'required|min:3',
+            'documento' =>'required|unique:clientes'
         ];
     }
 
@@ -32,8 +33,8 @@ class ClienteStoreRequest extends FormRequest
         return [
            'nome.min' => 'O nome precisa ter pelo menos 3 caract. !',
            'nome.required' => 'O nome é um campo obrigatório!',
-           // 'documento.required' => 'O documento do cliente é um campo obrigatório!',
-           // 'documento.unique' => 'Já existe um cliente com esse número de documento!'
+           'documento.required' => 'O documento do cliente é um campo obrigatório!',
+           'documento.unique' => 'Já existe um cliente com esse número de documento!'
         ];
     }
 }

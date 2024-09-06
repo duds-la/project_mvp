@@ -2,6 +2,9 @@
 
 namespace App\Http\Services\Cliente;
 
+use App\Http\Services\TipoPessoa\TipoPessoaService;
+use App\Models\Cliente;
+use Dotenv\Exception\ValidationException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -13,31 +16,26 @@ class ClienteService
 
         try {
 
-            dd($post);
-            // foreach ($carrierData as $data) {
+            $tipo_pessoa = TipoPessoaService::verificaTipoPessoa($post['tipo']);
 
-            //     $carrierUuid = $data['_id'];
-            //     $carrierCnpj = $data['_cnpj'];
-            //     $carrierCompanyName = $data['_fantasia'];
+            $novo_cliente = new Cliente();
 
-            //     $carrier = new Carrier();
+            $novo_cliente->nome = $post['nome'];
+            $novo_cliente->sobrenome = $post['sobrenome'];
+            $novo_cliente->documento = $post['documento'];
+            $novo_cliente->tipo_id = $tipo_pessoa;
+            $novo_cliente->numero = $post['numero'];
+            $novo_cliente->data_nascimento = $post['data_nascimento'];
+            $novo_cliente->email = $post['email'];
 
-            //     $carrier->uuid = $carrierUuid;
-            //     $carrier->cnpj = $carrierCnpj;
-            //     $carrier->company_name = $carrierCompanyName;
+            $novo_cliente->save();
 
-            //     $carrier->save();
-
-            //     Log::info('Register create'. $carrier->id . 'on table carriers');
-                
-            // }
             DB::commit();
 
             return true;
+
         } catch (\Exception $e) {
             DB::rollback();
-            Log::error('Error in integration Carrier method at '. __METHOD__. ' on ' . __LINE__ . ': ' . $e->getMessage());
-            throw ValidationException::withMessages(['Erro ao realizar integração, contate o suporte!']);
         }
     
     }
