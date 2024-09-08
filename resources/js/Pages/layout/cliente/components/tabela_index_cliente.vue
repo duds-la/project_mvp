@@ -30,27 +30,27 @@
                     href="#"
                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                   >
-                    Edit
+                  <i class="ri-settings-3-line text-lg"></i>
                   </a>
                   <div
                     v-if="exibeOpcoesCliente === index"
                     id="opcoes_cliente"
-                    class="absolute top-0 right-0 z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                    class="absolute top-0 right-0 z-10 w-44 bg-gray-100 rounded divide-y divide-gray-500 shadow"
                   >
-                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="actionsDropdownButton">
+                    <ul class="py-1 text-sm text-gray-700 " aria-labelledby="actionsDropdownButton">
                       <li>
                         <a
                           href="#"
-                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >Mass Edit</a
-                        >
+                          class="block py-2 px-4 hover:bg-gray-200 text-cyan-500"
+                          >Editar <i class="ri-edit-line"></i></a
+                        > 
                       </li>
                     </ul>
                     <div class="py-1">
                       <a
                         href="#"
-                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                        >Delete all</a
+                        class="block py-2 px-4 text-sm text-red-500 hover:bg-gray-200 "
+                        >Excluir <i class="ri-delete-bin-line"></i> </a
                       >
                     </div>
                   </div>
