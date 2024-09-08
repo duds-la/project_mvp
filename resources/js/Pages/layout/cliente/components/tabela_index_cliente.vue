@@ -48,6 +48,7 @@
                     </ul>
                     <div class="py-1">
                       <a
+                        @click="delete1(cliente.id)"
                         href="#"
                         class="block py-2 px-4 text-sm text-red-500 hover:bg-gray-200 "
                         >Excluir <i class="ri-delete-bin-line"></i> </a
@@ -65,6 +66,7 @@
   
   <script setup>
   import { ref } from 'vue';
+  import { router } from '@inertiajs/vue3';
   const { clientes } = defineProps(['clientes']);
   
   const exibeOpcoesCliente = ref(null);
@@ -72,5 +74,9 @@
   const toggleActions = (index) => {
     exibeOpcoesCliente.value = exibeOpcoesCliente.value === index ? null : index;
   };
+
+  const delete1 = (id) => {
+    router.delete(`/cliente/${id}`);
+}
   </script>
   

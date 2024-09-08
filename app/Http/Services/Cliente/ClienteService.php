@@ -39,4 +39,23 @@ class ClienteService
         }
     
     }
+    
+    public function destroy($id)
+    {
+        DB::beginTransaction();
+
+        try {
+
+            $cliente = Cliente::find($id);
+            $cliente->delete();
+
+            DB::commit();
+
+            return true;
+
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
+    
+    }
 }
