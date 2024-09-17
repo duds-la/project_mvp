@@ -4,6 +4,7 @@ import 'remixicon/fonts/remixicon.css'
 import VueApexCharts from 'vue3-apexcharts';
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
+import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
 createInertiaApp({
   resolve: name => {
@@ -14,6 +15,7 @@ createInertiaApp({
     const app = createApp({ render: () => h(App, props) });
     app.use(plugin);
     app.use(VueApexCharts); // Registra o VueApexCharts aqui
+    app.use(ZiggyVue);
     app.component('apexchart', VueApexCharts); // Registra o componente apexchart
     app.mount(el);
   },

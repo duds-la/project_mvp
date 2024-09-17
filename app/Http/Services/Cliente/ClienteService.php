@@ -39,7 +39,23 @@ class ClienteService
         }
     
     }
+
+    public function show($id)
+    {
+        
+        try {
+
+            $cliente = Cliente::find($id);
+            return $cliente;
+
+        } catch (\Exception $e) {
+            return 234;
+        }
     
+    }
+    
+    
+
     public function destroy($id)
     {
         DB::beginTransaction();
@@ -47,7 +63,7 @@ class ClienteService
         try {
 
             $cliente = Cliente::find($id);
-            $cliente->delete();
+            $cliente = $cliente->delete();
 
             DB::commit();
 

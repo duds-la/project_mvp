@@ -40,6 +40,7 @@
                     <ul class="py-1 text-sm text-gray-700 " aria-labelledby="actionsDropdownButton">
                       <li>
                         <a
+                        @click="edit1(cliente.id)"
                           href="#"
                           class="block py-2 px-4 hover:bg-gray-200 text-cyan-500"
                           >Editar <i class="ri-edit-line"></i></a
@@ -76,7 +77,15 @@
   };
 
   const delete1 = (id) => {
-    router.delete(`/cliente/${id}`);
-}
+  // Converte o id para um número inteiro
+  const clienteId = Number(id);
+  router.delete(`/cliente/${clienteId}`);
+};
+
+const edit1 = (id) => {
+  // Converte o id para um número inteiro
+  const clienteId = Number(id);
+  router.get(`/cliente/${clienteId}`);
+};
   </script>
   

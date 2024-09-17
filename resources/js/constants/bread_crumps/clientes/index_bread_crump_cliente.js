@@ -17,3 +17,17 @@ export const breadCrumbClienteCadastro = [
         ],
     }
 ];
+
+export const breadCrumbClienteEdicao = [
+    {
+        href: "#",
+        label: "Clientes",
+        subMenu: [
+            {
+                href: "#usuarios_inativos",
+                label: "Edição",
+                
+            }
+        ],
+    }
+];

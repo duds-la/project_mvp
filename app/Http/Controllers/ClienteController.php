@@ -49,19 +49,17 @@ class ClienteController extends Controller
         $post = $request->input();
         $novo_cliente = $this->clienteService->store($post);
 
-        
-
-        
+        return Inertia::render('layout/cliente/cliente_cadastro');
     }
 
     public function show(string $id)
     {
-        //
-    }
+        $exibe_cliente = $this->clienteService->show($id);
 
-    public function edit(string $id)
-    {
-        //
+        return Inertia::render('layout/cliente/cliente_edicao', [
+            'cliente' => $exibe_cliente,
+            'errors' => null,
+        ]);
     }
 
     public function update(Request $request, string $id)
@@ -73,6 +71,7 @@ class ClienteController extends Controller
     {
         $deleta_cliente = $this->clienteService->destroy($id);
 
-        return $deleta_cliente;
+        return Inertia::render('layout/cliente/cliente_cadastro');
+
     }
 }
