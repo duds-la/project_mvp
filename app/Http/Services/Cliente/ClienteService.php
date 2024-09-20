@@ -54,7 +54,32 @@ class ClienteService
     
     }
     
+    public function update($post, $id)
+    {
+        DB::beginTransaction();
+
+        try {
+
+            $cliente = Cliente::find($id);
+
+            $cliente->nome = $post['nome'];
+            $cliente->sobrenome = $post['sobrenome'];
+            $cliente->documento = $post['documento'];
+            $cliente->numero = $post['numero'];
+            $cliente->data_nascimento = $post['data_nascimento'];
+            $cliente->email = $post['email'];
+
+            $cliente->update();
+
+            DB::commit();
+
+            return true;
+
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
     
+    }
 
     public function destroy($id)
     {

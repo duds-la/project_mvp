@@ -64,7 +64,11 @@ class ClienteController extends Controller
 
     public function update(Request $request, string $id)
     {
-        //
+
+        $post = $request->input();
+        $cliente = $this->clienteService->update($post, $id);
+
+        return Inertia::render('layout/cliente/cliente_cadastro');
     }
 
     public function destroy($id)

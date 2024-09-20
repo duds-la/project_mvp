@@ -159,7 +159,8 @@ const handleCheckboxChange = () => {
 
 
 const submit = () => {
-    form.post('/cliente');
+    const id = props.cliente.id
+    form.put(`/cliente/atualizar/${id}`);
 }
 
 async function consultaCNPJ() {
