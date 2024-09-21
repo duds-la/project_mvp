@@ -20,23 +20,20 @@ class ClienteController extends Controller
 
     public function index()
     {
-        try {
-            $clientes = Cliente::paginate(10);
-            $paginacao = [];
-            $paginacao = [
-                'totalPaginas' => $clientes->lastPage(),
-                'currentPage' => $clientes->currentPage(),
-                'nextPageUrl' => $clientes->nextPageUrl(),
-                'prevPageUrl' => $clientes->previousPageUrl()
-            ];
 
-            return Inertia::render('layout/cliente/cliente_index', [
-                'clientes' => $clientes->items(),
-                'paginacao' => $paginacao
-            ]);
-        } catch (Exception $e) {
-            return 123;
-        }
+        $clientes = Cliente::paginate(10);
+        $paginacao = [];
+        $paginacao = [
+            'totalPaginas' => $clientes->lastPage(),
+            'currentPage' => $clientes->currentPage(),
+            'nextPageUrl' => $clientes->nextPageUrl(),
+            'prevPageUrl' => $clientes->previousPageUrl()
+        ];
+
+        return Inertia::render('layout/cliente/cliente_index', [
+            'clientes' => $clientes->items(),
+            'paginacao' => $paginacao
+        ]);
     }
 
     public function create()
@@ -76,6 +73,5 @@ class ClienteController extends Controller
         $deleta_cliente = $this->clienteService->destroy($id);
 
         return Inertia::render('layout/cliente/cliente_cadastro');
-
     }
 }

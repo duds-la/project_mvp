@@ -57,4 +57,6 @@ function changePage(url) {
     router.get(`/admin/clientes/${url}/edit`);
     }
 }
+
+
 </script>

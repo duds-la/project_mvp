@@ -120,7 +120,7 @@
                         v-model="form.email" id="email" name="email" type="text" placeholder="Jane">
                     <!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> -->
                 </div>
-
+                
 
             </div>
             <div class="mb-4 px-2 my-10 pb-10 w-full text-center">
@@ -130,18 +130,19 @@
         </form>
     </div>
 </template>
+
 <script setup>
 import { useForm, router } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
-const isChecked = ref(false)
-const loading = ref(false)
+const isChecked = ref(false);
+const loading = ref(false);
 
 const handleCheckboxChange = () => {
-    isChecked.value = !isChecked.value
-}
-
+    isChecked.value = !isChecked.value;
+};
 
 const form = useForm({
     nome: null,
@@ -151,30 +152,43 @@ const form = useForm({
     numero: null,
     data_nascimento: null,
     email: null,
-})
+});
 
-const { cliente } = defineProps(['cliente']);
+// Recebe os props, incluindo os erros
+const { cliente, errors = {} } = defineProps(['cliente', 'errors']);
+
+
+
+// Adiciona um console.log para verificar os erros
+console.log('Erros recebidos:', errors);
+
+
+const switch1 = () => {
+    Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Sem código',
+    });
+}
 
 
 const submit = () => {
     form.post('/cliente');
-}
+};
 
 async function consultaCNPJ() {
     loading.value = true;
     try {
-
         const response = await axios.get('/pesquisa-cliente/pesquisa-cliente-cnpj', { params: form });
         const data = response.data;
         form.nome = data.nome_fantasia;
         form.email = data.email;
         form.numero = data.telefone1 || '0';
-        form.email = data.email;
         form.data_nascimento = data.data_situacao_cadastral;
         form.documento = data.cnpj;
     } finally {
         loading.value = false; // Define loading como false após a requisição terminar
     }
-
 }
 </script>
+

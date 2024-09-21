@@ -2,11 +2,11 @@
 
 namespace App\Http\Services\Cliente;
 
+use App\Enum\CodigoErroCliente;
 use App\Http\Services\TipoPessoa\TipoPessoaService;
 use App\Models\Cliente;
-use Dotenv\Exception\ValidationException;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException as ValidationValidationException;
 
 class ClienteService
 {
@@ -23,7 +23,7 @@ class ClienteService
             $novo_cliente->nome = $post['nome'];
             $novo_cliente->sobrenome = $post['sobrenome'];
             $novo_cliente->documento = $post['documento'];
-            $novo_cliente->tipo_id = $tipo_pessoa;
+            // $novo_cliente->tipo_id = $tipo_pessoa;
             $novo_cliente->numero = $post['numero'];
             $novo_cliente->data_nascimento = $post['data_nascimento'];
             $novo_cliente->email = $post['email'];
@@ -36,6 +36,14 @@ class ClienteService
 
         } catch (\Exception $e) {
             DB::rollback();
+
+            $codigoErro = CodigoErroCliente::ERRO_SALVAR_CLIENTE->value;
+            throw ValidationValidationException::withMessages(
+                [
+                    'erro' => "Ocorreu um erro ao salvar, contate o suporte!",
+                    'codigoErro' => $codigoErro
+                ]
+            );
         }
     
     }
@@ -49,7 +57,15 @@ class ClienteService
             return $cliente;
 
         } catch (\Exception $e) {
-            return 234;
+            DB::rollback();
+
+            $codigoErro = CodigoErroCliente::ERRO_EXIBIR_CLIENTE->value;
+            throw ValidationValidationException::withMessages(
+                [
+                    'erro' => "Ocorreu um erro ao exibir o registro, contate o suporte!",
+                    'codigoErro' => $codigoErro
+                ]
+            );
         }
     
     }
@@ -77,6 +93,14 @@ class ClienteService
 
         } catch (\Exception $e) {
             DB::rollback();
+
+            $codigoErro = CodigoErroCliente::ERRO_ATUALIZAR_CLIENTE->value;
+            throw ValidationValidationException::withMessages(
+                [
+                    'erro' => "Ocorreu um erro ao atualizar, contate o suporte!",
+                    'codigoErro' => $codigoErro
+                ]
+            );
         }
     
     }
@@ -96,7 +120,16 @@ class ClienteService
 
         } catch (\Exception $e) {
             DB::rollback();
+
+            $codigoErro = CodigoErroCliente::ERRO_DELETAR_CLIENTE->value;
+            throw ValidationValidationException::withMessages(
+                [
+                    'erro' => "Ocorreu um erro ao deletar, contate o suporte!",
+                    'codigoErro' => $codigoErro
+                ]
+            );
         }
     
     }
+
 }
