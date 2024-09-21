@@ -18,16 +18,22 @@
 </template>
 
 <script setup>
-import { useForm } from '@inertiajs/vue3';
-import { router } from '@inertiajs/vue3';
+import { useForm, router } from '@inertiajs/vue3';
 
 const { rota } = defineProps(['rota']);
+
 const form = useForm({
     parametro: null,
 })
 
 function pesquisaCampo() {
-    router.get(rota, form)
+    router.get(
+        rota, 
+        form, 
+        { 
+            preserveScroll: true 
+        }
+    )
 }
 
 </script>
