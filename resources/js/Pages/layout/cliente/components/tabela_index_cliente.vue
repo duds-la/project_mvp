@@ -14,7 +14,7 @@
             </thead>
             <tbody>
               <tr
-                v-for="(cliente, index) in clientes"
+                v-for="(cliente, index) in dadosClientes"
                 :key="index"
                 class="odd:bg-gray-50 even:bg-gray-300 relative"
               >
@@ -67,8 +67,12 @@
   
   <script setup>
   import { ref } from 'vue';
-  import { router } from '@inertiajs/vue3';
-  const { clientes } = defineProps(['clientes']);
+  import { router, usePage } from '@inertiajs/vue3';
+  import { computed } from 'vue';
+
+  const page = usePage();
+
+  const dadosClientes = computed(() => page.props.clientes)
   
   const exibeOpcoesCliente = ref(null);
   

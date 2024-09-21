@@ -1,6 +1,5 @@
 <template>
     
-    <layoutBase>
         
         <div>
             <div class="p-4 mb-4">
@@ -21,26 +20,19 @@
 
             <!-- PAGINACAO -->
             <div class="">
-                <paginacao_componente :paginacao="paginacao"/>
+                <paginacao_componente/>
             </div>
 
             <!-- TABELA -->
             <div>
-                <tabela_index_cliente :clientes="clientes"/>
+                <tabela_index_cliente/>
             </div>
 
-            
-
-            
-
         </div>
-    </layoutBase>
 
 </template>
 <script setup>
-import { router } from '@inertiajs/vue3';
-
-import layoutBase from '../../components/layout/layout_base.vue';
+import { router, usePage } from '@inertiajs/vue3';
 import paginacao_componente from '../../components/paginacao/paginacao_componente.vue';
 import graficos_cliente from './components/graficos_cliente.vue';
 import tabela_index_cliente from './components/tabela_index_cliente.vue';
@@ -50,8 +42,15 @@ import breadCrumb from '../../components/bradCrumb/breadCrumb.vue';
 import { rotaPesquisaCliente } from '../../../constants/links/index_rotas_pesquisa.js';
 import { rotaCadastroCliente } from '../../../constants/links/index_rotas_cadastro.js';
 import { breadCrumbClienteIndex } from '../../../constants/bread_crumps/clientes/index_bread_crump_cliente.js';
+import { computed } from 'vue';
+
 
 const { clientes, paginacao } = defineProps(['clientes', 'paginacao']);
+
+const page = usePage();
+
+const dadosClientes = computed(() => page.props.clientes)
+const dadosPaginacao = computed(() => page.props.paginacao)
 
 function changePage(url) {
     if (url) {
