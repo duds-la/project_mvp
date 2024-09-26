@@ -9,7 +9,7 @@
           </div>
           <div class="ml-3">
             <p class="text-lg font-semibold">{{ clientesAtivos }}</p>
-            <h5 class="text-gray-600">Clientes Ativos</h5>
+            <h5 class="text-gray-600">Tipos de Serviços Ativos</h5>
           </div>
         </div>
         <div class="w-chart">
@@ -27,7 +27,7 @@
           </div>
           <div class="ml-3">
             <p class="text-lg font-semibold">{{ clientesInativos }}</p>
-            <h5 class="text-gray-600">Clientes Inativos</h5>
+            <h5 class="text-gray-600">Tipos de Serviços Inativos</h5>
           </div>
         </div>
         <div class="w-chart">
@@ -45,7 +45,7 @@
           </div>
           <div class="ml-3">
             <p class="text-lg font-semibold">{{ clientesCadastrados }}</p>
-            <h5 class="text-gray-600">Clientes Cadastrados</h5>
+            <h5 class="text-gray-600">Tipos de Serviços Cadastrados</h5>
           </div>
         </div>
         <div class="w-chart">

@@ -21,6 +21,7 @@ class TipoServicoController extends Controller
     public function index()
     {
         $tiposServicos = TipoServico::paginate(10);
+        
         $paginacao = [];
         $paginacao = [
             'totalPaginas' => $tiposServicos->lastPage(),
@@ -29,7 +30,7 @@ class TipoServicoController extends Controller
             'prevPageUrl' => $tiposServicos->previousPageUrl()
         ];
 
-        return Inertia::render('layout/cliente/cliente_index', [
+        return Inertia::render('layout/tipoServico/tipo_servico_index', [
             'tiposServicos' => $tiposServicos->items(),
             'paginacao' => $paginacao
         ]);
@@ -37,7 +38,7 @@ class TipoServicoController extends Controller
 
     public function create()
     {
-        return Inertia::render('layout/cliente/cliente_cadastro');
+        return Inertia::render('layout/tipoServico/tipo_servico_cadastro');
     }
 
     public function store(TipoServicoStoreRequest $request)

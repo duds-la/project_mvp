@@ -34,7 +34,7 @@
 <script setup>
 import { router, usePage } from '@inertiajs/vue3';
 import paginacao_componente from '../../components/paginacao/paginacao_componente.vue';
-import graficos_cliente from './components/graficos_cliente.vue';
+import graficos_cliente from './components/graficos_tipo_servico.vue';
 import tabela_index_tipo_servico from './components/tabela_index_tipo_servico.vue';
 import botao_cadastrar from '../../components/buttons/botao_cadastrar.vue';
 import botao_pesquisar from '../../components/buttons/botao_pesquisar.vue';
@@ -45,11 +45,11 @@ import { breadCrumbTipoServicoIndex } from '../../../constants/bread_crumps/tipo
 import { computed } from 'vue';
 
 
-const { clientes, paginacao } = defineProps(['clientes', 'paginacao']);
+const { tiposServicos, paginacao } = defineProps(['tiposServicos', 'paginacao']);
 
 const page = usePage();
 
-const dadosClientes = computed(() => page.props.clientes)
+const dadosTiposServicos = computed(() => page.props.tiposServicos)
 const dadosPaginacao = computed(() => page.props.paginacao)
 
 function changePage(url) {
