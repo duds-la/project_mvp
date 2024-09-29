@@ -20,18 +20,18 @@ class TipoServicoController extends Controller
     
     public function index()
     {
-        $tiposServicos = TipoServico::paginate(10);
+        $tipos_servicos = TipoServico::paginate(10);
         
         $paginacao = [];
         $paginacao = [
-            'totalPaginas' => $tiposServicos->lastPage(),
-            'currentPage' => $tiposServicos->currentPage(),
-            'nextPageUrl' => $tiposServicos->nextPageUrl(),
-            'prevPageUrl' => $tiposServicos->previousPageUrl()
+            'totalPaginas' => $tipos_servicos->lastPage(),
+            'currentPage' => $tipos_servicos->currentPage(),
+            'nextPageUrl' => $tipos_servicos->nextPageUrl(),
+            'prevPageUrl' => $tipos_servicos->previousPageUrl()
         ];
 
         return Inertia::render('layout/tipoServico/tipo_servico_index', [
-            'tiposServicos' => $tiposServicos->items(),
+            'tiposServicos' => $tipos_servicos->items(),
             'paginacao' => $paginacao
         ]);
     }
@@ -46,15 +46,15 @@ class TipoServicoController extends Controller
         $post = $request->input();
         $novo_tipo_servico = $this->tipoServicoService->store($post);
 
-        return Inertia::render('layout/cliente/cliente_cadastro');
+        return Inertia::render('layout/tipoServico/tipo_servico_cadastro');
     }
 
     public function show(string $id)
     {
-        $exibe_tipos_servico = $this->tipoServicoService->show($id);
+        $exibe_tipo_servico = $this->tipoServicoService->show($id);
 
-        return Inertia::render('layout/cliente/cliente_edicao', [
-            'tipos_servico' => $exibe_tipos_servico,
+        return Inertia::render('layout/tipoServico/tipo_servico_edicao', [
+            'tiposServico' => $exibe_tipo_servico,
             'errors' => null,
         ]);
     }
@@ -71,6 +71,6 @@ class TipoServicoController extends Controller
     {
         $deleta_tipo_servico = $this->tipoServicoService->destroy($id);
 
-        return Inertia::render('layout/cliente/cliente_cadastro');
+        return self::index();
     }
 }

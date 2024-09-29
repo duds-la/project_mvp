@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ClienteGraficoController;
 use App\Http\Controllers\PesquisaClienteController;
+use App\Http\Controllers\PesquisaTipoServicoController;
 use App\Http\Controllers\TipoServicoController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,6 +27,12 @@ Route::prefix('/pesquisa-cliente')->group(function () {
     Route::controller(PesquisaClienteController::class, 'pesquisa-cliente')->group(function () {
         Route::get('/', 'pesquisaClienteMultiplosCampos')->name('pesquisa-cliente.pesquisa-cliente');
         Route::get('/pesquisa-cliente-cnpj', 'pesquisaClientePorCnpj')->name('pesquisa-cliente.pesquisa-cliente-cnpj');
+    });
+});
+
+Route::prefix('/pesquisa-tipo-servico')->group(function () {
+    Route::controller(PesquisaTipoServicoController::class, 'pesquisa-tipo-servico')->group(function () {
+        Route::get('/', 'pesquisaTipoServicoMultiplosCampos')->name('pesquisa-tipo-servico.pesquisa-tipo-servico');
     });
 });
 

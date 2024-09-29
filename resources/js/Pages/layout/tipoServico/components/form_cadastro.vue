@@ -10,7 +10,7 @@
                     </label>
                     <input
                         class="appearance-none block w-full bg-gray-50 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                        v-model="form.codigo" id="codigo" name="codigo" type="text" placeholder="Jane">
+                        v-model="form.codigo" id="codigo" name="codigo" type="text" placeholder="TIPO A">
                     <p v-if="form.errors.codigo" class="text-red-500 text-xs italic">
                         {{ form.errors.codigo }}
                     </p>
@@ -23,7 +23,7 @@
                     </label>
                     <input
                         class="appearance-none block w-full bg-gray-50 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                        v-model="form.descricao" id="descricao" name="descricao" type="text" placeholder="Jane">
+                        v-model="form.descricao" id="descricao" name="descricao" type="text" placeholder="TIPO DE SERVIÇO ADICIONAL">
                     <p v-if="form.errors.descricao" class="text-red-500 text-xs italic">
                         {{ form.errors.descricao }}
                     </p>
@@ -40,8 +40,8 @@
                     <div class="relative">
                         <input
                             class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            v-model="form.classificacao" id="classificacao" name="classificacao" type="text" :disabled="!isChecked"
-                            :class="{ 'bg-gray-50': isChecked, 'bg-gray-100': !isChecked }" placeholder="Doe">
+                            v-model="form.classificacao" id="classificacao" name="classificacao" type="text" 
+                            placeholder="PROMOCIONAL - NATAL">
                     </div>
                         
                     
@@ -76,13 +76,11 @@
 </template>
 
 <script setup>
-import { useForm, router } from '@inertiajs/vue3';
-import { ref, onMounted, watch } from 'vue';
-import axios from 'axios';
+import { useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
 import Swal from 'sweetalert2';
 
 const isChecked = ref(false);
-const loading = ref(false);
 
 const handleCheckboxChange = () => {
     isChecked.value = !isChecked.value;
@@ -90,29 +88,25 @@ const handleCheckboxChange = () => {
 
 const form = useForm({
     codigo: null,
-    sobrecodigo: null,
-    documento: null,
-    tipo: null,
-    numero: null,
-    data_nascimento: null,
-    email: null,
+    descricao: null,
+    classificacao: null,
+    situacao: null, // Será atualizado com 'A' ou 'I'
 });
-
-const { cliente, errors = {} } = defineProps(['cliente', 'errors']);
-
 
 const switch1 = () => {
     Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Sem código',
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Sem código',
     });
-}
-
-
-const submit = () => {
-    form.post('/cliente');
 };
 
+const submit = () => {
+    // Definir o valor da situação baseado no checkbox
+    form.situacao = isChecked.value ? 'A' : 'I';
+    
+    // Submeter o formulário
+    form.post('/tipo-servico');
+};
 </script>
 

@@ -45,7 +45,7 @@ import { breadCrumbTipoServicoIndex } from '../../../constants/bread_crumps/tipo
 import { computed } from 'vue';
 
 
-const { tiposServicos, paginacao } = defineProps(['tiposServicos', 'paginacao']);
+// const { tiposServicos, paginacao } = defineProps(['tiposServicos', 'paginacao']);
 
 const page = usePage();
 

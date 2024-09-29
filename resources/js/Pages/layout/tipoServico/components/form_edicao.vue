@@ -10,7 +10,7 @@
                     </label>
                     <input
                         class="appearance-none block w-full bg-gray-50 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                        v-model="form.codigo" id="codigo" name="codigo" type="text" placeholder="Jane">
+                        v-model="form.codigo" id="codigo" name="codigo" type="text" placeholder="TIPO A">
                     <p v-if="form.errors.codigo" class="text-red-500 text-xs italic">
                         {{ form.errors.codigo }}
                     </p>
@@ -23,7 +23,7 @@
                     </label>
                     <input
                         class="appearance-none block w-full bg-gray-50 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                        v-model="form.descricao" id="descricao" name="descricao" type="text" placeholder="Jane">
+                        v-model="form.descricao" id="descricao" name="descricao" type="text" placeholder="TIPO DE SERVIÇO ADICIONAL">
                     <p v-if="form.errors.descricao" class="text-red-500 text-xs italic">
                         {{ form.errors.descricao }}
                     </p>
@@ -40,8 +40,8 @@
                     <div class="relative">
                         <input
                             class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            v-model="form.classificacao" id="classificacao" name="classificacao" type="text" :disabled="!isChecked"
-                            :class="{ 'bg-gray-50': isChecked, 'bg-gray-100': !isChecked }" placeholder="Doe">
+                            v-model="form.classificacao" id="classificacao" name="classificacao" type="text" 
+                            placeholder="PROMOCIONAL - NATAL">
                     </div>
                         
                     
@@ -76,22 +76,19 @@
 </template>
 <script setup>
 import { useForm, router } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import axios from 'axios';
 
 const props = defineProps({
     errors: Object,
-    cliente: Object
+    tiposServico: Object
 })
 
 const form = useForm({
-    nome:props.cliente.nome,
-    sobrenome:props.cliente.sobrenome,
-    documento:props.cliente.documento,
-    tipo:props.cliente.tipo,
-    numero:props.cliente.numero,
-    data_nascimento:props.cliente.data_nascimento,
-    email:props.cliente.email
+    codigo:props.tiposServico.codigo,
+    descricao:props.tiposServico.descricao,
+    classificacao:props.tiposServico.classificacao,
+    situacao:props.tiposServico.situacao
 })
 
 const isChecked = ref(false)

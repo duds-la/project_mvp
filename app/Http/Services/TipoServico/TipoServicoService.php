@@ -15,13 +15,12 @@ class TipoServicoService
         DB::beginTransaction();
 
         try {
-
             $novo_tipo_servico = new TipoServico();
 
-            $novo_tipo_servico->nome = $post['codigo'];
-            $novo_tipo_servico->nome = $post['classificacao'];
-            $novo_tipo_servico->nome = $post['descricao'];
-            $novo_tipo_servico->nome = $post['situacao'];
+            $novo_tipo_servico->codigo = $post['codigo'];
+            $novo_tipo_servico->classificacao = $post['classificacao'];
+            $novo_tipo_servico->descricao = $post['descricao'];
+            $novo_tipo_servico->situacao = $post['situacao'];
             
             $novo_tipo_servico->save();
 

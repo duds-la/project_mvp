@@ -23,7 +23,7 @@ class ClienteService
             $novo_cliente->nome = $post['nome'];
             $novo_cliente->sobrenome = $post['sobrenome'];
             $novo_cliente->documento = $post['documento'];
-            // $novo_cliente->tipo_id = $tipo_pessoa;
+            $novo_cliente->tipo_id = $tipo_pessoa;
             $novo_cliente->numero = $post['numero'];
             $novo_cliente->data_nascimento = $post['data_nascimento'];
             $novo_cliente->email = $post['email'];
