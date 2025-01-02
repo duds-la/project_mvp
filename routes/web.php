@@ -4,6 +4,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ClienteGraficoController;
 use App\Http\Controllers\PesquisaClienteController;
 use App\Http\Controllers\PesquisaTipoServicoController;
+use App\Http\Controllers\TipoProdutoController;
 use App\Http\Controllers\TipoServicoController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -50,5 +51,16 @@ Route::prefix('/tipo-servico')->group(function () {
         Route::put('/atualizar/{id}', 'update')->name('tipo-servico.update');
         Route::post('/', 'store')->name('tipo-servico.store');
         Route::delete('/{id}', 'destroy')->name('tipo-servico.destroy');
+    });
+});
+
+Route::prefix('/tipo-produto')->group(function () {
+    Route::controller(TipoProdutoController::class)->group(function () {
+        Route::get('/', 'index')->name('tipo-produto.index');
+        Route::get('/cadastrar-tipo-produto', 'create')->name('tipo-produto.create');
+        Route::get('/{id}', 'show')->name('tipo-produto.show');
+        Route::put('/atualizar/{id}', 'update')->name('tipo-produto.update');
+        Route::post('/', 'store')->name('tipo-produto.store');
+        Route::delete('/{id}', 'destroy')->name('tipo-produto.destroy');
     });
 });

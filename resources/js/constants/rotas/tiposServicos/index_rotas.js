@@ -1,3 +1,3 @@
 export const rotaTiposServicosIndex = {
-    rota: "/tipo-servico",
+    rota: "tipo-produto.index",
 };

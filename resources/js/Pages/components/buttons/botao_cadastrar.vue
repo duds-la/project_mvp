@@ -14,7 +14,7 @@ const { rota } = defineProps(['rota']);
 
 
 function cadastrar() {
-    router.get(rota)
+    router.get(route(rota))
 }
 
 </script>

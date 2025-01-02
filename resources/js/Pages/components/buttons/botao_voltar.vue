@@ -13,7 +13,7 @@ import { router } from '@inertiajs/vue3';
 const { rota } = defineProps(['rota']);
 
 function voltar() {
-    router.get(rota)
+    router.get(route(rota))
 }
 
 </script>

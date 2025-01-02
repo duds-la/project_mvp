@@ -3,5 +3,5 @@ export const rotaCadastroCliente = {
 };
 
 export const rotaCadastroTiposServicos = {
-    rota: "/tipo-servico/cadastrar-tipo-servico",
+    rota: "tipo-produto.create",
 };
